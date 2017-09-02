@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Grafik Web';
+    src: url('../fonts/graphikweb/Graphik-Light.eot');
+    src: url('../fonts/graphikweb/Graphik-Light.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/graphikweb/Graphik-Light.woff') format('woff'),
+      url('../fonts/graphikweb/Graphik-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Grafik Web';
+    src: url('../fonts/graphikweb/Graphik-Bold.eot');
+    src: url('../fonts/graphikweb/Graphik-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/graphikweb/Graphik-Bold.woff') format('woff'),
+      url('../fonts/graphikweb/Graphik-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Grafik Web';
+    src: url('../fonts/graphikweb/Graphik-Medium.eot');
+    src: url('../fonts/graphikweb/Graphik-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/graphikweb/Graphik-Medium.woff') format('woff'),
+      url('../fonts/graphikweb/Graphik-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Grafik Web';
+    src: url('../fonts/graphikweb/Graphik-Regular.eot');
+    src: url('../fonts/graphikweb/Graphik-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/graphikweb/Graphik-Regular.woff') format('woff'),
+      url('../fonts/graphikweb/Graphik-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Grafik Web';
+    src: url('../fonts/graphikweb/Graphik-Semibold.eot');
+    src: url('../fonts/graphikweb/Graphik-Semibold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/graphikweb/Graphik-Semibold.woff') format('woff'),
+      url('../fonts/graphikweb/Graphik-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+  }
