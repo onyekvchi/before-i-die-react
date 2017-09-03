@@ -18,7 +18,7 @@ class App extends Component {
         <Switch>
           <Route path="/about" exact component={About}></Route>
           <Route path="/new" exact component={NewQuote}></Route>
-          <Route path="/" component={Hero} />
+          <Route path="/" exact component={Hero} />
         </Switch>
       </div>
     );

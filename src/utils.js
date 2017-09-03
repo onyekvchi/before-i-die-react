@@ -1,5 +1,9 @@
-// import axios from "axios";
+import axios from "axios";
 import jsonp from "jsonp";
+
+const API = {
+  baseURL: "http://localhost:8000"
+}
 
 const Instagram = {
   accessToken: "4336590343.238e480.be3f9e255a53488bb7a94dd6469f3af8",
@@ -9,7 +13,7 @@ const Instagram = {
   limit: 8
 };
 
-export const fetchInstagramGallery = () => {
+const fetchInstagramGallery = () => {
   const baseURL = `${Instagram.apiUrl}/users/${Instagram.userID}/media/recent?`;
   const params = `access_token=${Instagram.accessToken}&count=${Instagram.limit}`;
 
@@ -29,3 +33,9 @@ export const getGalleryImages = () => {
     .then(response => response.data)
     .then(data => data.map(d => d.images.standard_resolution.url));
 };
+
+
+export const postEntry = (data) => {
+  const url = API.baseURL + "/quotes";
+  return axios.post(url, data);
+}

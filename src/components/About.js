@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Container from "./Container";
+import Spinner from "./Spinner";
+import CSSTransitionGroup from "react-addons-css-transition-group";
 import { getGalleryImages } from "./../utils";
 
 export default class About extends Component {
+  state = {
+    images: []
+  };
+
   componentDidMount = () => {
     getGalleryImages().then(imageUrls => {
       this.setState({
         images: imageUrls
       });
     });
-  };
-
-  state = {
-    images: []
   };
 
   render() {
@@ -26,22 +28,36 @@ export default class About extends Component {
             veniam, quis nostrud exercitation ullamco laboris.
           </Description>
 
-          <Gallery>
-            {this.state.images.map(imageUrl => (
-              <GalleryImage style={{ backgroundImage: `url(${imageUrl})` }} />
-            ))}
-          </Gallery>
-
-          <div style={{ textAlign: "center" }}>
-            <FollowLink href="#">See more images</FollowLink>
-          </div>
+          <CSSTransitionGroup
+            transitionName="fade"
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
+            component="div"
+          >
+            {this.state.images.length !== 0 ? (
+              <div key="gallery">
+                <Gallery>{renderImages(this.state.images)}</Gallery>
+                <div style={{ textAlign: "center" }}>
+                  <FollowLink href="#">See more images</FollowLink>
+                </div>
+              </div>
+            ) : (
+              <div key="loader" style={{ textAlign: "center", paddingTop: "60px" }}>
+                <Spinner />
+              </div>
+            )}
+          </CSSTransitionGroup>
         </Container>
       </AboutStyle>
     );
   }
 }
 
-const renderImages = state => {};
+const renderImages = images => {
+  return images.map(imageUrl => (
+    <GalleryImage style={{ backgroundImage: `url(${imageUrl})` }} />
+  ));
+};
 
 const AboutStyle = styled.div`
   height: 100%;
@@ -49,6 +65,7 @@ const AboutStyle = styled.div`
   overflow: scroll;
   background: white;
   padding: 60px 0;
+  color: black;
 `;
 
 const Description = styled.h2`
