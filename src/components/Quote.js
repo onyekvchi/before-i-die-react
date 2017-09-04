@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 export default class Quote extends Component {
+  defaultProps = {
+    pause: false
+  };
+
   state = {
     position: 0
   };
@@ -15,11 +19,13 @@ export default class Quote extends Component {
   };
 
   next = () => {
-    const delay = Math.floor(Math.random() * (250 - 20 + 1)) + 20;
-    this.typeTimeout = setTimeout(() => {
-      this.setState({ position: this.state.position + 1 });
-      this.type();
-    }, delay); // randomly wait before typing next letter
+    if (!this.props.pause) {
+      const delay = Math.floor(Math.random() * (250 - 20 + 1)) + 20;
+      this.typeTimeout = setTimeout(() => {
+        this.setState({ position: this.state.position + 1 });
+        this.type();
+      }, delay); // randomly wait before typing next letter
+    }
   };
 
   clear = () => {
@@ -31,7 +37,7 @@ export default class Quote extends Component {
           this.checkClearInterval // clear delete interval when all letters have been deleted
         );
       }, 75);
-    }, 2000); 
+    }, 2000);
   };
 
   checkClearInterval = () => {
@@ -53,9 +59,9 @@ export default class Quote extends Component {
   };
 
   componentWillUnmount = () => {
-      clearTimeout(this.typeTimeout);
-      clearTimeout(this.clearTimeout);
-  }
+    clearTimeout(this.typeTimeout);
+    clearTimeout(this.clearTimeout);
+  };
 
   render() {
     return (

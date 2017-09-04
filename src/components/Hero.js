@@ -4,7 +4,9 @@ import styled from "styled-components";
 import Container from "./Container";
 import Quote from "./Quote";
 
-export default class Hero extends Component {
+import { withRouter } from "react-router-dom";
+
+class Hero extends Component {
   state = {
     position: 0,
     sentences: ["I want to be accepted by my family", "I want to enjoy life"]
@@ -25,6 +27,7 @@ export default class Hero extends Component {
         <Container>
           <Title>#BeforeIDie</Title>
           <Quote
+            pause={this.props.location.pathname !== "/"}
             text={this.state.sentences[this.state.position]}
             onDone={this.doneTyping}
           />
@@ -40,6 +43,8 @@ export default class Hero extends Component {
     );
   }
 }
+
+export default withRouter(Hero);
 
 const HeroStyle = styled.div`
   height: 100%;
