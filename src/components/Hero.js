@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link, withRouter } from "react-router-dom";
+import styled, { css } from "styled-components";
 import Container from "./Container";
 import Quote from "./Quote";
-
-import { withRouter } from "react-router-dom";
+import ToggleLeft from "./Toggle";
 
 class Hero extends Component {
   state = {
@@ -21,24 +20,32 @@ class Hero extends Component {
     });
   };
 
+  leftToggleClicked = () => {
+    const { active, history } = this.props;
+    if (active) {
+      history.push("/about");
+    } else {
+      history.push("/");
+    }
+  };
+
   render() {
     return (
       <HeroStyle>
         <Container>
           <Title>#BeforeIDie</Title>
           <Quote
-            pause={this.props.location.pathname !== "/"}
+            pause={!this.props.active}
             text={this.state.sentences[this.state.position]}
             onDone={this.doneTyping}
           />
           {/* <Author>Onyekachi Mbaike</Author> */}
         </Container>
-        <BottomLink left>
-          <Link to="/about">About</Link>
-        </BottomLink>
-        <BottomLink right>
-          <Link to="/">Submit</Link>
-        </BottomLink>
+        <ToggleLeft
+          onClick={this.leftToggleClicked}
+          label="About"
+          active={!this.props.active}
+        />
       </HeroStyle>
     );
   }
@@ -52,13 +59,19 @@ const HeroStyle = styled.div`
   display: flex;
   padding-bottom: 100px;
   align-items: center;
+  background-color: #c7dbd9;
+  background-color: #dcbbc0;
 `;
 
 const Title = styled.h1`
-  color: rgba(255, 255, 255, 0.5);
+  // color: rgba(255, 255, 255, 0.2);
+  color: rgba(0, 0, 0, 0.6);
   margin-bottom: 15px;
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 500;
+  font-family: Georgia;
+  font-style: italic;
+  // text-align: center;
 `;
 
 // const Author = styled.div`
@@ -70,20 +83,3 @@ const Title = styled.h1`
 //     opacity: 1;
 //   }
 // `;
-
-const BottomLink = styled.div`
-  position: fixed;
-  left: ${props => props.left && 0};
-  right: ${props => props.right && 0};
-  bottom: 0;
-  font-size: 2.1rem;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 300ms;
-  padding: 30px;
-  cursor: pointer;
-  z-index: 4;
-  background-color: yellow;
-  &:hover {
-    color: rgba(255, 255, 255, 1);
-  }
-`;

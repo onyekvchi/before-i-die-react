@@ -166,6 +166,13 @@ a {
   clip: rect(1px 1px 1px 1px);
 }
 
+button {
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  outline: none;
+}
 
 /* Animations */
 .fade-enter {

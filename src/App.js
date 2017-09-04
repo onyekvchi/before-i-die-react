@@ -17,7 +17,12 @@ class App extends Component {
   render() {
     return (
       <div style={AppStyle}>
-        <Route path="/" component={Hero} />
+        <Route
+          path="/"
+          render={({ location }) => (
+            <Hero active={location.pathname === "/" && true} />
+          )}
+        />
         <Route
           path="/"
           render={({ location }) => (
