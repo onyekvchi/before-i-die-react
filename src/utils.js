@@ -10,7 +10,7 @@ const Instagram = {
   clientID: "238e480d69684022994e40e6da253fcc",
   userID: "4336590343",
   apiUrl: "https://api.instagram.com/v1",
-  limit: 8
+  limit: 6
 };
 
 const fetchInstagramGallery = () => {

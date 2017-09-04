@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Container from "./Container";
 import Spinner from "./Spinner";
 import CSSTransitionGroup from "react-addons-css-transition-group";
 import { getGalleryImages } from "./../utils";
+import Transition from "react-transition-group/Transition";
 
-export default class About extends Component {
+class About extends Component {
   state = {
-    images: []
+    images: [],
+    visible: false
   };
 
   componentDidMount = () => {
@@ -20,7 +22,7 @@ export default class About extends Component {
 
   render() {
     return (
-      <AboutStyle>
+      <AboutStyle className="annoying" visible={this.props.visible}>
         <Container>
           <Description>
             #BeforeIDieLagos is a collaborative art project, sed do eiusmod
@@ -42,7 +44,10 @@ export default class About extends Component {
                 </div>
               </div>
             ) : (
-              <div key="loader" style={{ textAlign: "center", paddingTop: "60px" }}>
+              <div
+                key="loader"
+                style={{ textAlign: "center", paddingTop: "60px" }}
+              >
                 <Spinner />
               </div>
             )}
@@ -53,6 +58,8 @@ export default class About extends Component {
   }
 }
 
+export default About;
+
 const renderImages = images => {
   return images.map((imageUrl, i) => (
     <GalleryImage key={i} style={{ backgroundImage: `url(${imageUrl})` }} />
@@ -61,11 +68,33 @@ const renderImages = images => {
 
 const AboutStyle = styled.div`
   height: 100%;
-  width: 100%;
+  width: 50%;
   overflow: scroll;
   background: white;
   padding: 60px 0;
   color: black;
+  position: fixed;
+  left: -50%;
+  top: 0;
+  z-index: 3;
+  transition: all 300ms;
+  opacity: 0;
+
+  ${props =>
+    props.visible &&
+    css`
+      left: 0;
+      opacity: 1;
+    `};
+`;
+
+const Overlay = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.6);
+  left: 0; 
+  top: 0;
+  props
 `;
 
 const Description = styled.h2`
@@ -86,7 +115,7 @@ const Gallery = styled.div`
 const GalleryImage = styled.div`
   margin: 3px;
   flex-grow: 1;
-  height: 480px;
+  height: 350px;
   width: 48%;
   background-color: #ddd;
   background-position: center;

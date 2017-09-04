@@ -33,8 +33,8 @@ export default class Hero extends Component {
         <BottomLink left>
           <Link to="/about">About</Link>
         </BottomLink>
-				<BottomLink right>
-          <Link to="/new">Submit</Link>
+        <BottomLink right>
+          <Link to="/">Submit</Link>
         </BottomLink>
       </HeroStyle>
     );
@@ -56,26 +56,28 @@ const Title = styled.h1`
   font-weight: 500;
 `;
 
-const Author = styled.div`
-  color: white;
-  font-size: 1.5rem;
-  opacity: 0.5;
-  transition: opacity 300ms;
-  &:hover {
-    opacity: 1;
-  }
-`;
+// const Author = styled.div`
+//   color: white;
+//   font-size: 1.5rem;
+//   opacity: 0.5;
+//   transition: opacity 300ms;
+//   &:hover {
+//     opacity: 1;
+//   }
+// `;
 
 const BottomLink = styled.div`
   position: fixed;
-  left: ${ props => props.left && 0};
-  right: ${ props => props.right && 0};
+  left: ${props => props.left && 0};
+  right: ${props => props.right && 0};
   bottom: 0;
   font-size: 2.1rem;
   color: rgba(255, 255, 255, 0.4);
   transition: color 300ms;
   padding: 30px;
   cursor: pointer;
+  z-index: 4;
+  background-color: yellow;
   &:hover {
     color: rgba(255, 255, 255, 1);
   }
