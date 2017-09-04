@@ -54,8 +54,8 @@ export default class About extends Component {
 }
 
 const renderImages = images => {
-  return images.map(imageUrl => (
-    <GalleryImage style={{ backgroundImage: `url(${imageUrl})` }} />
+  return images.map((imageUrl, i) => (
+    <GalleryImage key={i} style={{ backgroundImage: `url(${imageUrl})` }} />
   ));
 };
 
