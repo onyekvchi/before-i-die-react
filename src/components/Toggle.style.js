@@ -37,7 +37,7 @@ export const Toggle = styled.button`
   &:hover {
     &:after {
       transform: scaleX(1);
-      opacity: 0.3;
+      opacity: 0.2;
     }
   }
 `;

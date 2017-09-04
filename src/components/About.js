@@ -74,24 +74,26 @@ const AboutStyle = styled.div`
   padding: 60px 0;
   color: black;
   position: fixed;
-  left: -50%;
+  left: 0;
   top: 0;
   z-index: 3;
-  transition: all 300ms;
   opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 500ms cubic-bezier(0.4, 0, 0, 1),
+    -webkit-transform 500ms cubic-bezier(0.4, 0, 0, 1);
 
   ${props =>
     props.visible &&
     css`
-      left: 0;
       opacity: 1;
+      transform: translateX(0);
     `};
 `;
 
 const Overlay = styled.div`
   height: 100%;
   width: 100%;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.8);
   left: 0; 
   top: 0;
   props

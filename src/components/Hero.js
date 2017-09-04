@@ -29,13 +29,18 @@ class Hero extends Component {
     }
   };
 
+  overlayClicked = () => {
+    this.props.history.push("/");
+  };
+
   render() {
+    const inactive = !this.props.active;
     return (
       <HeroStyle>
         <Container>
           <Title>#BeforeIDie</Title>
           <Quote
-            pause={!this.props.active}
+            pause={inactive}
             text={this.state.sentences[this.state.position]}
             onDone={this.doneTyping}
           />
@@ -44,8 +49,9 @@ class Hero extends Component {
         <ToggleLeft
           onClick={this.leftToggleClicked}
           label="About"
-          active={!this.props.active}
+          active={inactive}
         />
+        <Overlay active={inactive} onClick={this.overlayClicked} />
       </HeroStyle>
     );
   }
@@ -65,13 +71,32 @@ const HeroStyle = styled.div`
 
 const Title = styled.h1`
   // color: rgba(255, 255, 255, 0.2);
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.4);
   margin-bottom: 15px;
   font-size: 2.4rem;
   font-weight: 500;
   font-family: Georgia;
   font-style: italic;
   // text-align: center;
+`;
+
+const Overlay = styled.div`
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 300ms ease-in-out;
+
+  ${props =>
+    props.active &&
+    css`
+      opacity: 1;
+      pointer-events: auto;
+    `};
 `;
 
 // const Author = styled.div`

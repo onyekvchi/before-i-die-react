@@ -11,21 +11,21 @@ export default class Quote extends Component {
   };
 
   type = () => {
-    if (this.state.position > this.props.text.length) {
-      this.clear();
-    } else {
-      this.next();
+    if (!this.props.pause) {
+      if (this.state.position > this.props.text.length) {
+        this.clear();
+      } else {
+        this.next();
+      }
     }
   };
 
   next = () => {
-    if (!this.props.pause) {
-      const delay = Math.floor(Math.random() * (250 - 20 + 1)) + 20;
-      this.typeTimeout = setTimeout(() => {
-        this.setState({ position: this.state.position + 1 });
-        this.type();
-      }, delay); // randomly wait before typing next letter
-    }
+    const delay = Math.floor(Math.random() * (250 - 20 + 1)) + 20;
+    this.typeTimeout = setTimeout(() => {
+      this.setState({ position: this.state.position + 1 });
+      this.type();
+    }, delay); // randomly wait before typing next letter
   };
 
   clear = () => {
@@ -71,7 +71,7 @@ export default class Quote extends Component {
 }
 
 const QuoteStyle = styled.h2`
-  font-size: 6.4rem;
+  font-size: 6rem;
   font-weight: 500;
   margin-bottom: 45px;
   min-height: 96px;
