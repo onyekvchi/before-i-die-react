@@ -5,8 +5,16 @@ import Container from "./Container";
 import Quote from "./Quote";
 import { QuoteStyle } from "./Quote";
 import { ToggleLeft, ToggleRight } from "./Toggle";
-// import Type from "react-typing-animation";
 import { getQuotes } from "./../utils";
+import About from "./About";
+
+const AppStyle = {
+  height: "100%",
+  width: "100%",
+  background: "rgba(0,0,0,1)",
+  overflowY: "scroll"
+};
+
 
 class Hero extends Component {
   state = {
@@ -16,10 +24,12 @@ class Hero extends Component {
   };
 
   componentDidMount = () => {
-    getQuotes().then(response => this.setState({
-      quotes: response.quotes,
-      meta: response.meta
-    }));
+    getQuotes().then(response =>
+      this.setState({
+        quotes: response.quotes,
+        meta: response.meta
+      })
+    );
   };
 
   doneTyping = () => {
@@ -29,15 +39,6 @@ class Hero extends Component {
           ? 0
           : this.state.position + 1
     });
-  };
-
-  leftToggleClicked = () => {
-    const { active, history } = this.props;
-    if (active) {
-      history.push("/about");
-    } else {
-      history.push("/");
-    }
   };
 
   rightToggleClicked = () => {
@@ -65,42 +66,34 @@ class Hero extends Component {
     );
   };
 
+  
+
   render() {
     const inactive = !this.props.active;
     return (
-      <HeroStyle>
-        <Container>
-          <Title>#BeforeIDie</Title>
-          {this.state.quotes.length > 0 && (
-            <Quote
-              pause={inactive}
-              text={this.state.quotes[this.state.position].quote}
-              onDone={this.doneTyping}
-            />
-          )}
+      <div style={AppStyle}>
+        <HeroStyle>
+          <Container>
+            <Title>#BeforeIDie</Title>
+            {this.state.quotes.length > 0 && (
+              <Quote
+                pause={inactive}
+                text={this.state.quotes[this.state.position].quote}
+                onDone={this.doneTyping}
+              />
+            )}
 
-          {/* <Type speed={100} onFinishedTyping={this.finishedTyping}>
-            <QuoteStyle>
-              {this.state.sentences[this.state.position]}
-              <Type.Delay ms={3000} />
-              <Type.Backspace count={this.state.sentences[this.state.position].length} />
-            </QuoteStyle>
-          </Type> */}
-
-          {/* <Author>Onyekachi Mbaike</Author> */}
-        </Container>
-        <ToggleLeft
-          onClick={this.leftToggleClicked}
-          label="About"
-          active={inactive}
-        />
-        <ToggleRight
-          onClick={this.rightToggleClicked}
-          label="Submit"
-          active={inactive}
-        />
-        <Overlay active={inactive} onClick={this.overlayClicked} />
-      </HeroStyle>
+            {/* <Author>Onyekachi Mbaike</Author> */}
+          </Container>
+          <ToggleRight
+            onClick={this.rightToggleClicked}
+            label="Submit"
+            active={this.props.location.pathname === "/new"}
+          />
+          <Overlay active={inactive} onClick={this.overlayClicked} />
+        </HeroStyle>
+        <About />
+      </div>
     );
   }
 }

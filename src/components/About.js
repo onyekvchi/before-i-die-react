@@ -25,10 +25,10 @@ class About extends Component {
             <AboutStyle visible={this.props.visible}>
                 <Container>
                     <Description>
-                        #BeforeIDieLagos is a collaborative art project, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris.
+                        <p>
+                        Before I Die is a global collaborative art project that invites people to contemplate death and reflect on their lives. Before I Die walls are created to make a space in communities to restore perspective and encourage sharing and, Over two thousand walls have been created around the world.</p>
+                        
+                        <p>We've built the first Before I Die Wall in Lagos at Freedom Park, Marina. It will be open from September 18, 2017.</p>
                     </Description>
 
                     <CSSTransitionGroup
@@ -75,37 +75,20 @@ const renderImages = images => {
 };
 
 const AboutStyle = styled.div`
-    height: 100%;
-    width: 50%;
-    overflow: scroll;
+    min-height: 100%;
     background: white;
     padding: 60px 0;
     color: black;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 3;
-    transform: translateX(-100%);
-    transition: transform 600ms cubic-bezier(0.4, 0, 0, 1),
-        -webkit-transform 600ms cubic-bezier(0.4, 0, 0, 1),
-        opacity 600ms cubic-bezier(0.4, 0, 0, 1);
-    transition-delay: 150ms;
-
-    ${props =>
-        props.visible &&
-        css`
-            transform: translateX(0);
-            transition-delay: 0ms;
-        `};
 `;
 
 const Description = styled.h2`
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     line-height: 1.6;
-    max-width: 60%;
+    max-width: 480px;
     width: 100%;
-    text-align: center;
-    margin: 60px auto 75px;
+    padding: 0 30px;
+    // text-align: center;
+    margin: 105px auto 120px;
 `;
 
 const Gallery = styled.div`
