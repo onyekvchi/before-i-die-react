@@ -15,7 +15,6 @@ const AppStyle = {
   overflowY: "scroll"
 };
 
-
 class Hero extends Component {
   state = {
     position: 0,
@@ -66,8 +65,6 @@ class Hero extends Component {
     );
   };
 
-  
-
   render() {
     const inactive = !this.props.active;
     return (
@@ -83,7 +80,7 @@ class Hero extends Component {
               />
             )}
 
-            {/* <Author>Onyekachi Mbaike</Author> */}
+            <Author>Onyekachi Mbaike</Author>
           </Container>
           <ToggleRight
             onClick={this.rightToggleClicked}
@@ -115,8 +112,7 @@ const Title = styled.h1`
   margin-bottom: 15px;
   font-size: 2.4rem;
   font-weight: 500;
-  // font-family: Georgia;
-  // font-style: italic;
+  font-style: italic;
 `;
 
 const Overlay = styled.div`
@@ -138,12 +134,8 @@ const Overlay = styled.div`
     `};
 `;
 
-// const Author = styled.div`
-//   color: white;
-//   font-size: 1.5rem;
-//   opacity: 0.5;
-//   transition: opacity 300ms;
-//   &:hover {
-//     opacity: 1;
-//   }
-// `;
+const Author = styled.div`
+  font-size: 1.8rem;
+  font-family: "Grafik Web";
+  display: none;
+`;
