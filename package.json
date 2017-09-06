@@ -27,6 +27,7 @@
     "start": "nodemon ./server/index.js & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && cd build && mv index.html 200.html && surge . --domain beforeidielagos.surge.sh"
   }
 }

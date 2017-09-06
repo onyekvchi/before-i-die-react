@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import styled, { css } from "styled-components";
 import Container from "./Container";
 import Quote from "./Quote";
 import { QuoteStyle } from "./Quote";
 import { ToggleLeft, ToggleRight } from "./Toggle";
 import { getQuotes } from "./../utils";
 import About from "./About";
+import { HeroStyle, Title, Author, Overlay } from "./Hero.style";
 
 const AppStyle = {
   height: "100%",
@@ -19,7 +19,9 @@ class Hero extends Component {
   state = {
     position: 0,
     quotes: {},
-    meta: {}
+    meta: {},
+    bgPosition: 0,
+    bg: ["#E51B26", "#FFF219", "#C0D537", "#B71A8C", "#19378F", "#5F6061"]
   };
 
   componentDidMount = () => {
@@ -29,7 +31,18 @@ class Hero extends Component {
         meta: response.meta
       })
     );
+
+    this.bgInterval = setInterval(() => {
+      let { bg, bgPosition } = this.state;
+      bgPosition = bgPosition === bg.length - 1 ? 0 : bgPosition + 1;
+      console.log(bgPosition);
+      this.setState({
+        bgPosition: bgPosition
+      });
+    }, 15000);
   };
+
+  changeBG = () => {};
 
   doneTyping = () => {
     this.setState({
@@ -53,23 +66,12 @@ class Hero extends Component {
     this.props.history.push("/");
   };
 
-  finishedTyping = () => {
-    this.setState(
-      {
-        position:
-          this.state.position === this.state.quotes.length - 1
-            ? 0
-            : this.state.position++
-      },
-      console.log(this.state.position)
-    );
-  };
-
   render() {
     const inactive = !this.props.active;
+    const { bg, bgPosition } = this.state;
     return (
       <div style={AppStyle}>
-        <HeroStyle>
+        <HeroStyle bg={bg[bgPosition]}>
           <Container>
             <Title>#BeforeIDie</Title>
             {this.state.quotes.length > 0 && (
@@ -79,7 +81,6 @@ class Hero extends Component {
                 onDone={this.doneTyping}
               />
             )}
-
             <Author>Onyekachi Mbaike</Author>
           </Container>
           <ToggleRight
@@ -96,46 +97,3 @@ class Hero extends Component {
 }
 
 export default withRouter(Hero);
-
-const HeroStyle = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  padding-bottom: 100px;
-  align-items: center;
-  background-color: #c7dbd9;
-  background-color: #dcbbc0;
-`;
-
-const Title = styled.h1`
-  color: rgba(0, 0, 0, 0.4);
-  margin-bottom: 15px;
-  font-size: 2.4rem;
-  font-weight: 500;
-  font-style: italic;
-`;
-
-const Overlay = styled.div`
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  pointer-events: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: all 300ms ease-in-out;
-
-  ${props =>
-    props.active &&
-    css`
-      opacity: 1;
-      pointer-events: auto;
-    `};
-`;
-
-const Author = styled.div`
-  font-size: 1.8rem;
-  font-family: "Grafik Web";
-  display: none;
-`;

@@ -114,7 +114,6 @@ const Input = styled.input`
   font-size: 1.6rem;
   width: 100%;
   max-width: 300px;
-  font-family: Georgia;
 `;
 
 const Error = styled.div`
@@ -137,7 +136,6 @@ const TextArea = styled.textarea`
   width: 100%;
   font-size: 6rem;
   outline: none;
-  font-family: Georgia;
 `;
 
 const Submit = styled.button`
@@ -151,7 +149,6 @@ const Submit = styled.button`
   border: none;
   font-size: 1.6rem;
   transition: all 300ms;
-  font-family: Georgia;
   &:disabled {
     opacity: 0.6;
     pointer-events: none;

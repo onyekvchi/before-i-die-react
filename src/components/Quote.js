@@ -77,6 +77,7 @@ const QuoteStyle = styled.h2`
   min-height: 96px;
   transition: min-height 500ms;
   line-height: 1.3;
+  color: white;
   // text-align: center;
   // font-family: Georgia;
 `;
