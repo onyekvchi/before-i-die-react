@@ -77,18 +77,21 @@ const renderImages = images => {
 const AboutStyle = styled.div`
     min-height: 100%;
     background: white;
-    padding: 60px 0;
+    padding: 60px 0 150px;
     color: black;
 `;
 
 const Description = styled.h2`
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 1.6;
-    max-width: 480px;
-    width: 100%;
-    padding: 0 30px;
+    max-width: 500px;
+    // width: 50%;
     // text-align: center;
     margin: 105px auto 120px;
+
+    p{
+        margin-bottom: 15px;
+    }
 `;
 
 const Gallery = styled.div`
@@ -99,8 +102,8 @@ const Gallery = styled.div`
 const GalleryImage = styled.div`
     margin: 3px;
     flex-grow: 1;
-    height: 350px;
-    width: 48%;
+    height: 300px;
+    width: 32%;
     background-color: #ddd;
     background-position: center;
     background-size: cover;
@@ -109,6 +112,7 @@ const GalleryImage = styled.div`
 const FollowLink = styled.a`
     padding: 12px 24px;
     color: white;
+    font-size: 1.4rem;
     background: black;
     border-radius: 100px;
     display: inline-block;
