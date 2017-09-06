@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Container from "./Container";
 import Spinner from "./Spinner";
 import { postEntry } from "./../utils";
@@ -44,7 +44,7 @@ export default class NewQuote extends Component {
 
   render() {
     return (
-      <NewQuoteStyle>
+      <NewQuoteStyle visible={this.props.visible}>
         <Container>
           <h2>Before I Die,</h2>
           <form onSubmit={this.handleSubmit}>
@@ -85,6 +85,22 @@ const NewQuoteStyle = styled.div`
   height: 100%;
   width: 100%;
   background-color: #fff;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9;
+  transform: translateX(100%);
+  transition: transform 800ms cubic-bezier(0.4, 0, 0, 1),
+  -webkit-transform 800ms cubic-bezier(0.4, 0, 0, 1),
+  opacity 800ms cubic-bezier(0.4, 0, 0, 1);
+  transition-delay: 150ms;
+
+  ${props =>
+    props.visible &&
+    css`
+      transform: translateX(0);
+      transition-delay: 0ms;
+    `}
 `;
 
 const Input = styled.input`

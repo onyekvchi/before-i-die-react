@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 
 export const Toggle = styled.button`
   position: fixed;
-  left: ${props => props.left && "45px"};
-  right: ${props => props.right && 0};
+  left: ${props => props.float === "left" && "45px"};
+  right: ${props => props.float === "right" && "45px"};
   top: 45px;
   color: rgba(255, 255, 255, 0.4);
   transition: color 300ms;
@@ -65,10 +65,6 @@ export const ToggleIcon = styled.span`
     transform: translateZ(0);
   }
 
-  ${Toggle}:hover & {
-    transform: rotate(90deg);
-  }
-
   ${props =>
     props.active && css`transform: rotate(90deg) translateX(1px);`} &:before {
     top: 0;
@@ -99,24 +95,29 @@ export const ToggleIconWrap = styled.div`
   background-color: white;
   position: absolute;
   top: 0;
-  left: 0;
+  left: ${props => (props.right ? "none" : 0)};
+  right: ${props => (props.right ? 0 : "none")};
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0, 1),
-    background-color 0.3s cubic-bezier(0.4, 0, 0, 1),
-    -webkit-transform 0.3s cubic-bezier(0.4, 0, 0, 1);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0, 1),
+    background-color 300ms cubic-bezier(0.4, 0, 0, 1),
+    -webkit-transform 300ms cubic-bezier(0.4, 0, 0, 1);
   ${props => props.active && css`background-color: #101010;`};
+
+  ${Toggle}:hover & {
+    transform: ${props => (props.right ? "rotate(-90deg)" : "rotate(90deg)")};
+  }
 `;
 
 export const ToggleLabel = styled.span`
-  transform: translateX(-20px);
+  transform: ${props =>
+    props.right ? "translateX(20px)" : "translateX(-20px)"};
   opacity: 0;
   color: white;
   font-size: 1.8rem;
   opacity: 0;
-  padding-left: 70px;
-  padding-right: 30px;
+  padding: ${props => (props.right ? "0 70px 0 30px" : "0 30px 0 70px")};
   display: inline-block;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0, 1),
     opacity 0.15s cubic-bezier(0.4, 0, 0, 1),

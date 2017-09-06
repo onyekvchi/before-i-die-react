@@ -26,7 +26,14 @@ class App extends Component {
         <Route
           path="/"
           render={({ location }) => (
-            <About visible={location.pathname === "/about" && "entered"} />
+            <About visible={location.pathname === "/about" && true} />
+          )}
+        />
+
+        <Route
+          path="/"
+          render={({ location }) => (
+            <NewQuote visible={location.pathname === "/new" && true} />
           )}
         />
       </div>

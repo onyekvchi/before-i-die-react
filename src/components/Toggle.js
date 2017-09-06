@@ -8,7 +8,7 @@ import {
 
 const ToggleLeft = ({ active, label, onClick }) => {
   return (
-    <Toggle left onClick={onClick}>
+    <Toggle float="left" onClick={onClick}>
       <ToggleIconWrap active={active}>
         <ToggleIcon active={active} />
       </ToggleIconWrap>
@@ -17,4 +17,15 @@ const ToggleLeft = ({ active, label, onClick }) => {
   );
 };
 
-export default ToggleLeft;
+const ToggleRight = ({ active, label, onClick }) => {
+  return (
+    <Toggle float="right" onClick={onClick} style={{ zIndex: "999" }}>
+      <ToggleLabel right>{active ? "Close" : label}</ToggleLabel>
+      <ToggleIconWrap right active={active}>
+        <ToggleIcon right active={active} />
+      </ToggleIconWrap>
+    </Toggle>
+  );
+};
+
+export { ToggleLeft, ToggleRight };

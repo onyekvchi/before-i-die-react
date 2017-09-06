@@ -2,7 +2,8 @@ import axios from "axios";
 import jsonp from "jsonp";
 
 const API = {
-  baseURL: "http://localhost:8000"
+  // baseURL: "http://localhost:8000"
+  baseURL: "https://beforeidielagos.glitch.me"
 }
 
 const Instagram = {
@@ -38,4 +39,9 @@ export const getGalleryImages = () => {
 export const postEntry = (data) => {
   const url = API.baseURL + "/quotes";
   return axios.post(url, data);
+}
+
+export const getQuotes = () => {
+  const url = API.baseURL + "/quotes";
+  return axios.get(url).then(response => response.data);
 }
