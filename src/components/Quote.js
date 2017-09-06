@@ -71,12 +71,12 @@ export default class Quote extends Component {
 }
 
 const QuoteStyle = styled.h2`
-  font-size: 6rem;
+  font-size: 4.8rem;
   font-weight: 500;
   margin-bottom: 45px;
   min-height: 96px;
   transition: min-height 500ms;
   line-height: 1.3;
   // text-align: center;
-  font-family: Georgia;
+  // font-family: Georgia;
 `;

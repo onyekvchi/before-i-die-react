@@ -90,10 +90,10 @@ const NewQuoteStyle = styled.div`
   top: 0;
   z-index: 9;
   transform: translateX(100%);
-  transition: transform 800ms cubic-bezier(0.4, 0, 0, 1),
-  -webkit-transform 800ms cubic-bezier(0.4, 0, 0, 1),
-  opacity 800ms cubic-bezier(0.4, 0, 0, 1);
-  transition-delay: 150ms;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0, 1),
+  -webkit-transform 600ms cubic-bezier(0.4, 0, 0, 1),
+  opacity 600ms cubic-bezier(0.4, 0, 0, 1);
+  transition-delay: 100ms;
 
   ${props =>
     props.visible &&

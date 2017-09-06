@@ -122,8 +122,8 @@ const Title = styled.h1`
   margin-bottom: 15px;
   font-size: 2.4rem;
   font-weight: 500;
-  font-family: Georgia;
-  font-style: italic;
+  // font-family: Georgia;
+  // font-style: italic;
 `;
 
 const Overlay = styled.div`
