@@ -16,6 +16,11 @@ export const Toggle = styled.button`
   transition: transform 0.9s cubic-bezier(0.4, 0, 0, 1),
     -webkit-transform 0.9s cubic-bezier(0.4, 0, 0, 1);
 
+  @media screen and (max-width: 768px) {
+    right: 15px;
+    top: 15px;
+  }
+
   &:after {
     position: absolute;
     top: 0;

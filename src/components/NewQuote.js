@@ -13,18 +13,14 @@ export default class NewQuote extends Component {
   };
 
   componentDidMount = () => {
-    this.handleFocus();
+    this.textArea.focus();
   };
 
-  componentDidUpdate = () => {
-    this.handleFocus();
-  }
-
-  handleFocus = () => {
-    if (this.props.visible) {
+  componentDidUpdate = prevProps => {
+    if (this.props.visible && !prevProps.visible) {
       this.textArea.focus();
     }
-  }
+  };
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -101,8 +97,8 @@ const NewQuoteStyle = styled.div`
   z-index: 9;
   transform: translateY(100%);
   transition: transform 600ms cubic-bezier(0.4, 0, 0, 1),
-  -webkit-transform 600ms cubic-bezier(0.4, 0, 0, 1),
-  opacity 600ms cubic-bezier(0.4, 0, 0, 1);
+    -webkit-transform 600ms cubic-bezier(0.4, 0, 0, 1),
+    opacity 600ms cubic-bezier(0.4, 0, 0, 1);
   transition-delay: 100ms;
 
   ${props =>
@@ -110,7 +106,7 @@ const NewQuoteStyle = styled.div`
     css`
       transform: translateX(0);
       transition-delay: 0ms;
-    `}
+    `};
 `;
 
 const Input = styled.input`
