@@ -13,8 +13,18 @@ export default class NewQuote extends Component {
   };
 
   componentDidMount = () => {
-    this.textArea.focus();
+    this.handleFocus();
   };
+
+  componentDidUpdate = () => {
+    this.handleFocus();
+  }
+
+  handleFocus = () => {
+    if (this.props.visible) {
+      this.textArea.focus();
+    }
+  }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });

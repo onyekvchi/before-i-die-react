@@ -16,7 +16,7 @@ const AppStyle = {
 
 class Hero extends Component {
   state = {
-    position: 18,
+    position: 0,
     quotes: {},
     meta: {},
     bgPosition: 0,

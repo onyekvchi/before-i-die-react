@@ -21,7 +21,7 @@ class Quote extends Component {
   };
 
   delayedType = () => {
-    const delay = Math.floor(Math.random() * (250 - 20 + 1)) + 20;
+    const delay = Math.floor(Math.random() * (300 - 50 + 1)) + 50;
     this.props.setTimeout(this.type, delay);
   };
 
@@ -65,7 +65,7 @@ class Quote extends Component {
       if(nextProps.text !== this.props.text) {
         this.props = nextProps;
         if (this.state.position === 0 ) {
-          this.props.setTimeout(this.type, 500);
+          this.props.setTimeout(this.type, 1000);
         }
       }
   }
