@@ -1634,7 +1634,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.6.0:
+create-react-class@^15.5.2, create-react-class@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.0.tgz#ab448497c26566e1e29413e883207d57cfe7bed4"
   dependencies:
@@ -5320,6 +5320,13 @@ react-scripts@1.0.13:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "1.1.2"
+
+react-timeout@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-timeout/-/react-timeout-1.0.1.tgz#7fa61bea1340a6b3a40bd9335cbfbd551e832f18"
+  dependencies:
+    create-react-class "^15.5.2"
+    object-assign "^4.0.1"
 
 react-transition-group@^1.2.0:
   version "1.2.0"

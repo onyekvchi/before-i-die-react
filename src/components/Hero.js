@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import Container from "./Container";
-import Quote from "./Quote";
-import { QuoteStyle } from "./Quote";
+import Quote, { QuoteStyle } from "./Quote";
 import { ToggleLeft, ToggleRight } from "./Toggle";
 import { getQuotes } from "./../utils";
 import About from "./About";
@@ -17,7 +16,7 @@ const AppStyle = {
 
 class Hero extends Component {
   state = {
-    position: 0,
+    position: 18,
     quotes: {},
     meta: {},
     bgPosition: 0,
@@ -25,35 +24,32 @@ class Hero extends Component {
   };
 
   componentDidMount = () => {
-    getQuotes().then(response =>
+    getQuotes().then(response => {
       this.setState({
         quotes: response.quotes,
         meta: response.meta
-      })
-    );
+      });
+    });
 
     this.bgInterval = setInterval(() => {
       let { bg, bgPosition } = this.state;
-      bgPosition = bgPosition === bg.length - 1 ? 0 : bgPosition + 1;
-      console.log(bgPosition);
+      bgPosition = bgPosition < bg.length - 1 ? bgPosition + 1 : 0;
       this.setState({
         bgPosition: bgPosition
       });
     }, 15000);
   };
 
-  changeBG = () => {};
-
   doneTyping = () => {
-    this.setState({
+    this.setState((prevState, props) => ({
       position:
-        this.state.position === this.state.quotes.length - 1
-          ? 0
-          : this.state.position + 1
-    });
+        prevState.position < prevState.quotes.length - 1
+          ? prevState.position + 1
+          : 0
+    }));
   };
 
-  rightToggleClicked = () => {
+  toggleClicked = () => {
     const { active, history } = this.props;
     if (active) {
       history.push("/new");
@@ -76,7 +72,6 @@ class Hero extends Component {
             <Title>#BeforeIDie</Title>
             {this.state.quotes.length > 0 && (
               <Quote
-                pause={inactive}
                 text={this.state.quotes[this.state.position].quote}
                 onDone={this.doneTyping}
               />
@@ -84,13 +79,13 @@ class Hero extends Component {
             <Author>Onyekachi Mbaike</Author>
           </Container>
           <ToggleRight
-            onClick={this.rightToggleClicked}
+            onClick={this.toggleClicked}
             label="Submit"
             active={this.props.location.pathname === "/new"}
           />
           <Overlay active={inactive} onClick={this.overlayClicked} />
         </HeroStyle>
-        <About />
+        {/* <About /> */}
       </div>
     );
   }

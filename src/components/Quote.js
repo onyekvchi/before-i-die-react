@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import ReactTimeout from "react-timeout";
 
-export default class Quote extends Component {
+class Quote extends Component {
   defaultProps = {
     pause: false
   };
@@ -11,38 +12,46 @@ export default class Quote extends Component {
   };
 
   type = () => {
-    if (!this.props.pause) {
-      if (this.state.position > this.props.text.length) {
-        this.clear();
-      } else {
-        this.next();
-      }
-    }
+    this.setState(
+      (prevState, props) => ({
+        position: prevState.position + 1
+      }),
+      this.next
+    );
+  };
+
+  delayedType = () => {
+    const delay = Math.floor(Math.random() * (250 - 20 + 1)) + 20;
+    this.props.setTimeout(this.type, delay);
   };
 
   next = () => {
-    const delay = Math.floor(Math.random() * (250 - 20 + 1)) + 20;
-    this.typeTimeout = setTimeout(() => {
-      this.setState({ position: this.state.position + 1 });
-      this.type();
-    }, delay); // randomly wait before typing next letter
+    if (this.state.position < this.props.text.length) {
+      this.delayedType(); // if there are more letters, type the next one
+    }else if (this.state.position === this.props.text.length){
+      this.props.setTimeout(this.delayedType, 2000); // if this is the last letter, wait a little
+    } else {
+      this.backspace(); // if we've finished all the letters, start deleting
+    }
   };
 
-  clear = () => {
-    // delay before deleting all letters from screen
-    this.clearTimeout = setTimeout(() => {
-      this.delete = setInterval(() => {
-        this.setState(
-          { position: this.state.position >= 1 ? this.state.position - 1 : 0 },
-          this.checkClearInterval // clear delete interval when all letters have been deleted
-        );
-      }, 75);
-    }, 2000);
+  backspace = () => {
+    this.setState(
+      (prevState, props) => ({
+        position: prevState.position - 1
+      }),
+      this.prev
+    );
   };
 
-  checkClearInterval = () => {
-    if (this.state.position === 0) {
-      clearInterval(this.delete);
+  delayedBackspace = () => {
+    this.props.setTimeout(this.backspace, 50);
+  };
+
+  prev = () => {
+    if (this.state.position > 0) {
+      this.delayedBackspace();
+    } else {
       this.props.onDone();
     }
   };
@@ -51,17 +60,15 @@ export default class Quote extends Component {
     this.type();
   };
 
-  componentWillReceiveProps = nextProps => {
-    this.setState({ position: 0 }, () => {
-      this.props = nextProps;
-      setTimeout(() => this.type(), 500); // delay before starting the next sentence
-    });
-  };
-
-  componentWillUnmount = () => {
-    clearTimeout(this.typeTimeout);
-    clearTimeout(this.clearTimeout);
-  };
+  componentWillReceiveProps = (nextProps) => {
+      // Only update props if we get a different Quote
+      if(nextProps.text !== this.props.text) {
+        this.props = nextProps;
+        if (this.state.position === 0 ) {
+          this.props.setTimeout(this.type, 500);
+        }
+      }
+  }
 
   render() {
     return (
@@ -69,6 +76,8 @@ export default class Quote extends Component {
     );
   }
 }
+
+export default ReactTimeout(Quote);
 
 const QuoteStyle = styled.h2`
   font-size: 4.8rem;
@@ -78,6 +87,4 @@ const QuoteStyle = styled.h2`
   transition: min-height 500ms;
   line-height: 1.3;
   color: white;
-  // text-align: center;
-  // font-family: Georgia;
 `;
