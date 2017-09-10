@@ -85,7 +85,7 @@ class Hero extends Component {
           />
           <Overlay active={inactive} onClick={this.overlayClicked} />
         </HeroStyle>
-        {/* <About /> */}
+        <About />
       </div>
     );
   }
