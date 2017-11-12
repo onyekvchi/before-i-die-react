@@ -51,9 +51,11 @@ export default class NewQuote extends Component {
   render() {
     return (
       <NewQuoteStyle visible={this.props.visible}>
-        <Container>
-          <h2>Before I Die,</h2>
+        <Container style={{ marginBottom: 90 }}>
+          <Heading>Before I Die,</Heading>
           <form onSubmit={this.handleSubmit}>
+            <Error show={this.state.error}>{this.state.error}</Error>
+
             <TextArea
               name="text"
               value={this.state.text}
@@ -69,14 +71,13 @@ export default class NewQuote extends Component {
               placeholder="Your name (optional)"
               onChange={this.handleChange}
             />
-            <Error show={this.state.error}>{this.state.error}</Error>
             <Submit
               disabled={this.state.text.length < 12 || this.state.loading}
             >
               {this.state.loading ? (
-                <Spinner color="white" size="25px" />
+                <Spinner color="white" size="20px" />
               ) : (
-                <span>{this.state.error ? "Retry" : "Submit"}</span>
+                <span>{this.state.error ? "Retry" : "Share"}</span>
               )}
             </Submit>
           </form>
@@ -100,6 +101,8 @@ const NewQuoteStyle = styled.div`
     -webkit-transform 600ms cubic-bezier(0.4, 0, 0, 1),
     opacity 600ms cubic-bezier(0.4, 0, 0, 1);
   transition-delay: 100ms;
+  display: flex;
+  align-items: center;
 
   ${props =>
     props.visible &&
@@ -114,12 +117,12 @@ const NewQuoteStyle = styled.div`
 `;
 
 const Input = styled.input`
-  padding: 20px;
+  padding: 15px 0;
   color: black;
   outline: none;
   margin-top: 8px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  border: none;
+  border-bottom: 1px solid #ddd;
   display: block;
   font-size: 1.6rem;
   width: 100%;
@@ -127,7 +130,7 @@ const Input = styled.input`
 
   @media (max-width: 500px) {
     font-size: 1.6rem;
-    padding: 15px;
+    padding: 15px 0;
     width: 100%;
     max-width: 100%;
   }
@@ -146,31 +149,38 @@ const Error = styled.div`
 `;
 
 const TextArea = styled.textarea`
-  padding: 30px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  margin-top: 25px;
+  padding: 30px 0;
+  border: 1px solid transparent;
   width: 100%;
-  font-size: 6rem;
+  font-size: 4.8rem;
   outline: none;
 
   @media (max-width: 500px) {
-    font-size: 2.1rem;
-    padding: 15px;
+    font-size: 3.2rem;
+    padding: 15px 0;
+  }
+`;
+
+const Heading = styled.h2`
+  font-size: 2.1rem;
+  color: rgba(0, 0, 0, 0.6);
+  @media (max-width: 500px) {
+    font-size: 1.6rem;
   }
 `;
 
 const Submit = styled.button`
-  padding: 12px 24px;
+  padding: 15px 36px;
   color: white;
-  background: black;
-  border-radius: 100px;
+  background: #2dba58;
+  border-radius: 5px;
   display: inline-block;
   margin-top: 30px;
   text-align: center;
   border: none;
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   transition: all 300ms;
+  cursor: pointer;
   &:disabled {
     opacity: 0.6;
     pointer-events: none;
