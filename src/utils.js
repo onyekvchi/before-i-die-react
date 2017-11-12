@@ -2,7 +2,6 @@ import axios from "axios";
 import jsonp from "jsonp";
 
 const API = {
-  // baseURL: "http://localhost:8000"
   baseURL: "https://beforeidielagos.glitch.me"
 };
 

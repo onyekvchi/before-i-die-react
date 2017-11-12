@@ -17,7 +17,7 @@ const AppStyle = {
 class Hero extends Component {
   state = {
     position: 0,
-    quotes: {},
+    quotes: [],
     meta: {},
     bgPosition: 0,
     bg: ["#E51B26", "#FFF219", "#C0D537", "#B71A8C", "#19378F", "#5F6061"]
@@ -26,8 +26,7 @@ class Hero extends Component {
   componentDidMount = () => {
     getQuotes().then(response => {
       this.setState({
-        quotes: response.quotes,
-        meta: response.meta
+        quotes: response
       });
     });
 
@@ -70,12 +69,13 @@ class Hero extends Component {
         <HeroStyle bg={bg[bgPosition]}>
           <Container>
             <Title>#BeforeIDie</Title>
-            {this.state.quotes.length > 0 && (
-              <Quote
-                text={this.state.quotes[this.state.position].quote}
-                onDone={this.doneTyping}
-              />
-            )}
+            {this.state.quotes &&
+              this.state.quotes.length > 0 && (
+                <Quote
+                  text={this.state.quotes[this.state.position].quote}
+                  onDone={this.doneTyping}
+                />
+              )}
             <Author>Onyekachi Mbaike</Author>
           </Container>
           <ToggleRight
