@@ -6,6 +6,7 @@ import { ToggleRight } from "./Toggle";
 import { getQuotes } from "./../utils";
 import About from "./About";
 import { HeroStyle, Title, Author, Overlay } from "./Hero.style";
+import LoadingQuote from "./LoadingQuote";
 
 const AppStyle = {
   height: "100%",
@@ -68,14 +69,17 @@ class Hero extends Component {
       <div style={AppStyle}>
         <HeroStyle bg={bg[bgPosition]}>
           <Container>
-            <Title>#BeforeIDie</Title>
-            {this.state.quotes &&
-              this.state.quotes.length > 0 && (
+            {this.state.quotes.length > 0 ? (
+              <div>
+                <Title>#BeforeIDie</Title>
                 <Quote
                   text={this.state.quotes[this.state.position].quote}
                   onDone={this.doneTyping}
                 />
-              )}
+              </div>
+            ) : (
+              <LoadingQuote />
+            )}
             <Author>Onyekachi Mbaike</Author>
           </Container>
           <ToggleRight
@@ -83,7 +87,6 @@ class Hero extends Component {
             label="Submit"
             active={this.props.location.pathname === "/new"}
           />
-          <Overlay active={inactive} onClick={this.overlayClicked} />
         </HeroStyle>
         <About />
       </div>

@@ -4,20 +4,21 @@ export const Toggle = styled.button`
   position: fixed;
   right: 45px;
   top: 45px;
-  color: rgba(255, 255, 255, 0.4);
   transition: color 300ms;
   height: 70px;
+  width: 70px;
+  border-radius: 70px;
   cursor: pointer;
   z-index: 4;
   appearance: none;
   border: none;
-  border-radius: 35px;
   transition: transform 0.9s cubic-bezier(0.4, 0, 0, 1),
     -webkit-transform 0.9s cubic-bezier(0.4, 0, 0, 1);
 
   @media screen and (max-width: 500px) {
     right: 15px;
-    top: 15px;
+    top: auto;
+    bottom: 15px;
   }
 `;
 
@@ -70,6 +71,7 @@ export const ToggleIconWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
   transition: transform 300ms cubic-bezier(0.4, 0, 0, 1),
     background-color 300ms cubic-bezier(0.4, 0, 0, 1),
     -webkit-transform 300ms cubic-bezier(0.4, 0, 0, 1);
