@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Toggle = styled.button`
+export const StyledToggle = styled.button`
   position: fixed;
   right: 45px;
   bottom: 45px;
@@ -76,7 +76,7 @@ export const ToggleIconWrap = styled.div`
     -webkit-transform 300ms cubic-bezier(0.4, 0, 0, 1);
   ${props => props.active && css`background-color: black;`};
 
-  ${Toggle}:hover & {
+  ${StyledToggle}:hover & {
     transform: ${props => !props.active && "rotate(-90deg)"};
   }
 `;

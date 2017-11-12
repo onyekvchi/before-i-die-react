@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import ReactTimeout from "react-timeout";
+import StyledQuote from "./Quote.styled";
 
 class Quote extends Component {
   state = {
@@ -67,22 +67,11 @@ class Quote extends Component {
 
   render() {
     return (
-      <QuoteStyle>{this.props.text.substr(0, this.state.position)}</QuoteStyle>
+      <StyledQuote>
+        {this.props.text.substr(0, this.state.position)}
+      </StyledQuote>
     );
   }
 }
 
 export default ReactTimeout(Quote);
-
-const QuoteStyle = styled.h2`
-  font-size: 4.8rem;
-  font-weight: 500;
-  min-height: 130px;
-  line-height: 1.3;
-  color: black;
-  font-family: "Miller Web", Georgia, times, serif;
-
-  @media (max-width: 500px) {
-    font-size: 3.6rem;
-  }
-`;

@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
-import Container from "./Container";
-import Spinner from "./Spinner";
+import Container from "./../../widgets/Container";
+import Spinner from "./../../widgets/Spinner";
 import CSSTransitionGroup from "react-addons-css-transition-group";
-import { getGalleryImages } from "./../utils";
+import { getGalleryImages } from "./../../../../utils";
+import {
+  StyledAbout,
+  Description,
+  Gallery,
+  FollowLink,
+  GalleryImage
+} from "./About.styled";
 
 class About extends Component {
   state = {
@@ -21,7 +27,7 @@ class About extends Component {
 
   render() {
     return (
-      <AboutStyle visible={this.props.visible} id="about">
+      <StyledAbout visible={this.props.visible} id="about">
         <Container>
           <Description>
             <p>
@@ -69,7 +75,7 @@ class About extends Component {
             )}
           </CSSTransitionGroup>
         </Container>
-      </AboutStyle>
+      </StyledAbout>
     );
   }
 }
@@ -81,61 +87,3 @@ const renderImages = images => {
     <GalleryImage key={i} style={{ backgroundImage: `url(${imageUrl})` }} />
   ));
 };
-
-const AboutStyle = styled.div`
-  min-height: 100%;
-  background: #f7f7f7;
-  padding: 60px 0 150px;
-  color: black;
-  position: relative;
-`;
-
-const Description = styled.div`
-  font-size: 1.8rem;
-  line-height: 1.6;
-  max-width: 580px;
-  margin: 105px auto 120px;
-
-  @media (max-width: 500px) {
-    margin: 0 0 45px 0;
-    text-align: left;
-  }
-
-  p {
-    margin-bottom: 30px;
-  }
-`;
-
-const Gallery = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-flow: row wrap;
-`;
-
-const GalleryImage = styled.div`
-  margin: 5px;
-  flex-grow: 1;
-  height: 300px;
-  width: 30%;
-  background-color: #ddd;
-  background-position: center;
-  background-size: cover;
-
-  @media (max-width: 500px) {
-    height: 250px;
-    width: 100%;
-    margin: 15px 0;
-  }
-`;
-
-const FollowLink = styled.a`
-  color: black;
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  padding-bottom: 4px;
-  border-bottom: 2px solid #000;
-  letter-spacing: 1px;
-  display: inline-block;
-  margin-top: 75px;
-  text-align: center;
-`;

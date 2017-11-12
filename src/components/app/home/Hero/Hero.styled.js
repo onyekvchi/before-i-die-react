@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
-export const HeroStyle = styled.div`
-  height: 100%;
+export const StyledHero = styled.div`
+  height: 100vh;
   width: 100%;
   display: flex;
   padding-bottom: 100px;

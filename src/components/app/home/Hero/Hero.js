@@ -1,25 +1,16 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import Container from "./Container";
-import Quote, { QuoteStyle } from "./Quote";
-import { ToggleRight } from "./Toggle";
-import { getQuotes, shuffle } from "./../utils";
-import About from "./About";
-import LoadingQuote from "./LoadingQuote";
+import { withRouter } from "react-router-dom";
+import Container from "./../../widgets/Container";
+import Quote from "./Quote/Quote";
+import Toggle from "./Toggle/Toggle";
+import { getQuotes, shuffle } from "./../../../../utils";
+import LoadingShim from "./LoadingShim/LoadingShim";
 import {
-  HeroStyle,
+  StyledHero,
   Title,
-  Author,
   Overlay,
   ScrollDownIndicator
-} from "./Hero.style";
-
-const AppStyle = {
-  height: "100%",
-  width: "100%",
-  background: "rgba(0,0,0,1)",
-  overflowY: "scroll"
-};
+} from "./Hero.styled";
 
 const backgrounds = [
   "#FDA67E",
@@ -90,36 +81,33 @@ class Hero extends Component {
     const inactive = !this.props.active;
     const { bg, bgPosition } = this.state;
     return (
-      <div style={AppStyle}>
-        <HeroStyle bg={bg[bgPosition]}>
-          <Container>
-            {this.state.quotes.length > 0 ? (
-              <div key="content">
-                <Title>Before I die,</Title>
-                <Quote
-                  text={this.state.quotes[this.state.position].quote}
-                  onDone={this.goToNextQuote}
-                />
-              </div>
-            ) : (
-              <LoadingQuote key="loading" />
-            )}
-          </Container>
-          <ToggleRight
-            onClick={this.toggleClicked}
-            label="Submit"
-            active={this.props.location.pathname === "/new"}
-          />
-          <ScrollDownIndicator
-            hoverColor={bg[bgPosition]}
-            onClick={this.scrollToAboutSection}
-          >
-            ?
-          </ScrollDownIndicator>
-          <Overlay active={inactive} />
-        </HeroStyle>
-        <About />
-      </div>
+      <StyledHero bg={bg[bgPosition]}>
+        <Container>
+          {this.state.quotes.length > 0 ? (
+            <div key="content">
+              <Title>Before I die,</Title>
+              <Quote
+                text={this.state.quotes[this.state.position].quote}
+                onDone={this.goToNextQuote}
+              />
+            </div>
+          ) : (
+            <LoadingShim key="loading" />
+          )}
+        </Container>
+        <Toggle
+          onClick={this.toggleClicked}
+          label="Submit"
+          active={this.props.location.pathname === "/new"}
+        />
+        <ScrollDownIndicator
+          hoverColor={bg[bgPosition]}
+          onClick={this.scrollToAboutSection}
+        >
+          ?
+        </ScrollDownIndicator>
+        <Overlay active={inactive} />
+      </StyledHero>
     );
   }
 }

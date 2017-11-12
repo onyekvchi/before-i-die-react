@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-// import TransitionGroup from "react-addons-transition-group";
-import TransitionGroup from "react-transition-group/TransitionGroup";
+import { Route } from "react-router-dom";
 
-import Hero from "./components/Hero";
-import About from "./components/About";
-import NewQuote from "./components/NewQuote";
+import Home from "./app/Home";
+import New from "./app/new/New";
 
 const appStyle = {
   height: "100%",
@@ -20,13 +17,13 @@ class App extends Component {
         <Route
           path="/"
           render={({ location }) => (
-            <Hero active={location.pathname === "/" && true} />
+            <Home active={location.pathname === "/" && true} />
           )}
         />
         <Route
           path="/"
           render={({ location }) => (
-            <NewQuote visible={location.pathname === "/new" && true} />
+            <New visible={location.pathname === "/new" && true} />
           )}
         />
       </div>
