@@ -82,9 +82,11 @@ export default ReactTimeout(Quote);
 const QuoteStyle = styled.h2`
   font-size: 4.8rem;
   font-weight: 500;
-  /* margin-bottom: 45px; */
   min-height: 130px;
-  transition: min-height 500ms;
   line-height: 1.3;
   color: white;
+
+  @media (max-width: 500px) {
+    font-size: 3.6rem;
+  }
 `;

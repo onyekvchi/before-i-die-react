@@ -34,4 +34,9 @@ const Shimmer = styled.div`
   width: ${props => props.width + "%"};
   background-color: white;
   animation: ${pulse} 3s infinite ease-in-out;
+
+  @media (max-width: 500px) {
+    height: ${props =>
+      props.height >= 60 ? props.height * 0.75 + "px" : props.height + "px"};
+  }
 `;

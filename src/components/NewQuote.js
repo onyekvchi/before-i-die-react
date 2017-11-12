@@ -125,9 +125,11 @@ const Input = styled.input`
   width: 100%;
   max-width: 300px;
 
-  @media(max-width: 500px) {
+  @media (max-width: 500px) {
     font-size: 1.6rem;
     padding: 15px;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 

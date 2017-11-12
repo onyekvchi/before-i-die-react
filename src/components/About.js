@@ -89,9 +89,11 @@ const Description = styled.h2`
   font-size: 1.4rem;
   line-height: 1.6;
   max-width: 500px;
-  // width: 50%;
-  // text-align: center;
   margin: 105px auto 120px;
+
+  @media (max-width: 500px) {
+    margin: 0 0 45px 0;
+  }
 
   p {
     margin-bottom: 15px;
@@ -115,7 +117,7 @@ const GalleryImage = styled.div`
   @media (max-width: 500px) {
     height: 250px;
     width: 100%;
-    margin: 5px 0;
+    margin: 15px 0;
   }
 `;
 

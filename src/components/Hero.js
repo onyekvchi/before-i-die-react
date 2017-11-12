@@ -80,7 +80,6 @@ class Hero extends Component {
             ) : (
               <LoadingQuote />
             )}
-            <Author>Onyekachi Mbaike</Author>
           </Container>
           <ToggleRight
             onClick={this.toggleClicked}
