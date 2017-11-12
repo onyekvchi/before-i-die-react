@@ -9,6 +9,7 @@ export default class NewQuote extends Component {
     text: "",
     name: "",
     error: "",
+    success: false,
     loading: false
   };
 
@@ -19,6 +20,7 @@ export default class NewQuote extends Component {
   componentDidUpdate = prevProps => {
     if (this.props.visible && !prevProps.visible) {
       this.textArea.focus();
+      this.setState({ success: false });
     }
   };
 
@@ -32,11 +34,11 @@ export default class NewQuote extends Component {
 
     postEntry({ text: this.state.text, name: this.state.name })
       .then(() => {
-        // handle success
         this.setState({
           text: "",
           name: "",
-          loading: false
+          loading: false,
+          success: true
         });
       })
       .catch(error => this.setState({ error: error.message, loading: false }));
@@ -51,11 +53,13 @@ export default class NewQuote extends Component {
   render() {
     return (
       <NewQuoteStyle visible={this.props.visible}>
-        <Container style={{ marginBottom: 90 }}>
+        <Container style={{ marginBottom: 200 }}>
+          <Error show={this.state.error}>{this.state.error}</Error>
+          <Success show={this.state.success}>
+            Your wish was posted successfully!
+          </Success>
           <Heading>Before I Die,</Heading>
           <form onSubmit={this.handleSubmit}>
-            <Error show={this.state.error}>{this.state.error}</Error>
-
             <TextArea
               name="text"
               value={this.state.text}
@@ -139,13 +143,26 @@ const Input = styled.input`
 const Error = styled.div`
   padding: 12px 25px;
   font-size: 1.4rem;
-  color: white;
   background-color: #fdf3f4;
   opacity: ${props => (props.show ? 1 : 0)};
   pointer-events: ${props => (props.show ? "auto" : "none")};
-  margin-top: 25px;
+  margin-bottom: 45px;
   transition: all 300ms;
   color: black;
+`;
+
+const Success = styled.div`
+  padding: 12px 25px;
+  font-size: 1.4rem;
+  color: white;
+  background-color: #dff0d8;
+  border-color: #d0e9c6;
+  color: #3c763d;
+  opacity: ${props => (props.show ? 1 : 0)};
+  pointer-events: ${props => (props.show ? "auto" : "none")};
+  margin-bottom: 45px;
+  transition: all 300ms;
+  border-radius: 3px;
 `;
 
 const TextArea = styled.textarea`
