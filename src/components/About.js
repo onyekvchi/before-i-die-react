@@ -4,7 +4,6 @@ import Container from "./Container";
 import Spinner from "./Spinner";
 import CSSTransitionGroup from "react-addons-css-transition-group";
 import { getGalleryImages } from "./../utils";
-import Transition from "react-transition-group/Transition";
 
 class About extends Component {
   state = {
@@ -86,11 +85,10 @@ const AboutStyle = styled.div`
 `;
 
 const Description = styled.div`
-  font-size: 1.4rem;
-  line-height: 1.6;
-  max-width: 500px;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  max-width: 540px;
   margin: 105px auto 120px;
-  text-align: center;
 
   @media (max-width: 500px) {
     margin: 0 0 45px 0;
@@ -98,7 +96,7 @@ const Description = styled.div`
   }
 
   p {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -107,6 +105,7 @@ const Gallery = styled.div`
   justify-content: space-between;
   flex-flow: row wrap;
 `;
+
 const GalleryImage = styled.div`
   margin: 3px;
   flex-grow: 1;

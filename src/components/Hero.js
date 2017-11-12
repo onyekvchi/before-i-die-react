@@ -21,7 +21,19 @@ class Hero extends Component {
     quotes: [],
     meta: {},
     bgPosition: 0,
-    bg: ["#E51B26", "#FFF219", "#C0D537", "#B71A8C", "#19378F", "#5F6061"]
+    bg: [
+      "#FDA67E",
+      "#FD907E",
+      "#E19E53",
+      "#F9DA85",
+      "#FBEFA4",
+      "#FFF2DD",
+      "#FAF9F1",
+      "#E9FBFF",
+      "#D4F7ED",
+      "#D5EBED",
+      "#85D6D1"
+    ]
   };
 
   componentDidMount = () => {
@@ -38,6 +50,9 @@ class Hero extends Component {
         bgPosition: bgPosition
       });
     }, 30000);
+
+    // immediately start transitioning
+    this.setState(prevState => ({ bgPosition: prevState.bgPosition + 1 }));
   };
 
   doneTyping = () => {
@@ -70,15 +85,15 @@ class Hero extends Component {
         <HeroStyle bg={bg[bgPosition]}>
           <Container>
             {this.state.quotes.length > 0 ? (
-              <div>
-                <Title>#BeforeIDie</Title>
+              <div key="content">
+                <Title>Before I die,</Title>
                 <Quote
                   text={this.state.quotes[this.state.position].quote}
                   onDone={this.doneTyping}
                 />
               </div>
             ) : (
-              <LoadingQuote />
+              <LoadingQuote key="loading" />
             )}
           </Container>
           <ToggleRight
@@ -86,6 +101,7 @@ class Hero extends Component {
             label="Submit"
             active={this.props.location.pathname === "/new"}
           />
+          <Overlay active={inactive} />
         </HeroStyle>
         <About />
       </div>

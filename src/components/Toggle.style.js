@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Toggle = styled.button`
   position: fixed;
   right: 45px;
-  top: 45px;
+  bottom: 45px;
   transition: color 300ms;
   height: 50px;
   width: 50px;

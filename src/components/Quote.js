@@ -3,17 +3,13 @@ import styled from "styled-components";
 import ReactTimeout from "react-timeout";
 
 class Quote extends Component {
-  defaultProps = {
-    pause: false
-  };
-
   state = {
     position: 0
   };
 
   type = () => {
     this.setState(
-      (prevState, props) => ({
+      prevState => ({
         position: prevState.position + 1
       }),
       this.next
@@ -27,17 +23,17 @@ class Quote extends Component {
 
   next = () => {
     if (this.state.position < this.props.text.length) {
-      this.delayedType(); // if there are more letters, type the next one
-    }else if (this.state.position === this.props.text.length){
+      this.delayedType(); // if there are more letters, type the next letter
+    } else if (this.state.position === this.props.text.length) {
       this.props.setTimeout(this.delayedType, 2000); // if this is the last letter, wait a little
     } else {
-      this.backspace(); // if we've finished all the letters, start deleting
+      this.backspace(); // if we've finished typing all the letters, start deleting
     }
   };
 
   backspace = () => {
     this.setState(
-      (prevState, props) => ({
+      prevState => ({
         position: prevState.position - 1
       }),
       this.prev
@@ -60,15 +56,14 @@ class Quote extends Component {
     this.type();
   };
 
-  componentWillReceiveProps = (nextProps) => {
-      // Only update props if we get a different Quote
-      if(nextProps.text !== this.props.text) {
-        this.props = nextProps;
-        if (this.state.position === 0 ) {
-          this.props.setTimeout(this.type, 1000);
-        }
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.text !== this.props.text) {
+      this.props = nextProps;
+      if (this.state.position === 0) {
+        this.props.setTimeout(this.type, 1000);
       }
-  }
+    }
+  };
 
   render() {
     return (
@@ -84,7 +79,8 @@ const QuoteStyle = styled.h2`
   font-weight: 500;
   min-height: 130px;
   line-height: 1.3;
-  color: white;
+  color: black;
+  font-family: "Miller Web", Georgia, times, serif;
 
   @media (max-width: 500px) {
     font-size: 3.6rem;

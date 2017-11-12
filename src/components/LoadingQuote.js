@@ -14,9 +14,9 @@ export default class LoadingQuote extends Component {
 }
 
 const pulse = keyframes`
-  0% { opacity: 0.15; }
-  50% { opacity: 0.5; }
-  100% { opacity: 0.15; }
+  0% { opacity: 0.05; }
+  50% { opacity: 0.25; }
+  100% { opacity: 0.05; }
 `;
 
 const ShimmerWrap = styled.div`
@@ -32,11 +32,12 @@ const Shimmer = styled.div`
   top: ${props => props.top + "px"};
   height: ${props => props.height + "px"};
   width: ${props => props.width + "%"};
-  background-color: white;
+  background-color: black;
   animation: ${pulse} 3s infinite ease-in-out;
 
   @media (max-width: 500px) {
     height: ${props =>
       props.height >= 60 ? props.height * 0.75 + "px" : props.height + "px"};
+    top: ${ props => props.top === 115 &&  "100px"}
   }
 `;
