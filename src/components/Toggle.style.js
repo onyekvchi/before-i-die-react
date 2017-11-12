@@ -5,8 +5,8 @@ export const Toggle = styled.button`
   right: 45px;
   top: 45px;
   transition: color 300ms;
-  height: 70px;
-  width: 70px;
+  height: 50px;
+  width: 50px;
   border-radius: 70px;
   cursor: pointer;
   z-index: 4;
@@ -14,6 +14,7 @@ export const Toggle = styled.button`
   border: none;
   transition: transform 0.9s cubic-bezier(0.4, 0, 0, 1),
     -webkit-transform 0.9s cubic-bezier(0.4, 0, 0, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 
   @media screen and (max-width: 500px) {
     right: 15px;
@@ -62,7 +63,6 @@ export const ToggleIcon = styled.span`
 export const ToggleIconWrap = styled.div`
   height: 50px;
   width: 50px;
-  margin: 10px;
   border-radius: 70px;
   background-color: white;
   position: absolute;
@@ -71,7 +71,6 @@ export const ToggleIconWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
   transition: transform 300ms cubic-bezier(0.4, 0, 0, 1),
     background-color 300ms cubic-bezier(0.4, 0, 0, 1),
     -webkit-transform 300ms cubic-bezier(0.4, 0, 0, 1);

@@ -80,19 +80,21 @@ const renderImages = images => {
 
 const AboutStyle = styled.div`
   min-height: 100%;
-  background: #fafafa;
+  background: #f7f7f7;
   padding: 60px 0 150px;
   color: black;
 `;
 
-const Description = styled.h2`
+const Description = styled.div`
   font-size: 1.4rem;
   line-height: 1.6;
   max-width: 500px;
   margin: 105px auto 120px;
+  text-align: center;
 
   @media (max-width: 500px) {
     margin: 0 0 45px 0;
+    text-align: left;
   }
 
   p {
