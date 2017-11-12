@@ -48,7 +48,12 @@ class About extends Component {
               <div key="gallery">
                 <Gallery>{renderImages(this.state.images)}</Gallery>
                 <div style={{ textAlign: "center" }}>
-                  <FollowLink href="#">See more images</FollowLink>
+                  <FollowLink
+                    href="https://www.instagram.com/beforeidielagos/"
+                    target="_blank"
+                  >
+                    View all images
+                  </FollowLink>
                 </div>
               </div>
             ) : (
@@ -86,9 +91,9 @@ const AboutStyle = styled.div`
 `;
 
 const Description = styled.div`
-  font-size: 1.6rem;
-  line-height: 1.5;
-  max-width: 540px;
+  font-size: 1.8rem;
+  line-height: 1.6;
+  max-width: 580px;
   margin: 105px auto 120px;
 
   @media (max-width: 500px) {
@@ -108,10 +113,10 @@ const Gallery = styled.div`
 `;
 
 const GalleryImage = styled.div`
-  margin: 3px;
+  margin: 5px;
   flex-grow: 1;
   height: 300px;
-  width: 32%;
+  width: 30%;
   background-color: #ddd;
   background-position: center;
   background-size: cover;
@@ -124,11 +129,12 @@ const GalleryImage = styled.div`
 `;
 
 const FollowLink = styled.a`
-  padding: 15px 30px;
-  color: white;
+  color: black;
+  text-transform: uppercase;
   font-size: 1.4rem;
-  background: black;
-  border-radius: 100px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #000;
+  letter-spacing: 1px;
   display: inline-block;
   margin-top: 75px;
   text-align: center;
