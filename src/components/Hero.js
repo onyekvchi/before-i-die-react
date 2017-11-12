@@ -36,7 +36,7 @@ class Hero extends Component {
       this.setState({
         bgPosition: bgPosition
       });
-    }, 15000);
+    }, 30000);
   };
 
   doneTyping = () => {

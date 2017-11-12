@@ -111,6 +111,12 @@ const GalleryImage = styled.div`
   background-color: #ddd;
   background-position: center;
   background-size: cover;
+
+  @media (max-width: 500px) {
+    height: 250px;
+    width: 100%;
+    margin: 5px 0;
+  }
 `;
 
 const FollowLink = styled.a`

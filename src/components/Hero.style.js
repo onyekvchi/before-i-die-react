@@ -1,4 +1,3 @@
-
 import styled, { css } from "styled-components";
 
 export const HeroStyle = styled.div`
@@ -7,7 +6,7 @@ export const HeroStyle = styled.div`
   display: flex;
   padding-bottom: 100px;
   align-items: center;
-  background-color: ${ props => props.bg };
+  background-color: ${props => props.bg};
   transition: background-color 15s;
 `;
 
