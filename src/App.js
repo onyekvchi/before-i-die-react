@@ -7,7 +7,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import NewQuote from "./components/NewQuote";
 
-const AppStyle = {
+const appStyle = {
   height: "100%",
   width: "100%",
   background: "rgba(0,0,0,1)"
@@ -16,7 +16,7 @@ const AppStyle = {
 class App extends Component {
   render() {
     return (
-      <div style={AppStyle}>
+      <div style={appStyle}>
         <Route
           path="/"
           render={({ location }) => (
