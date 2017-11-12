@@ -107,6 +107,10 @@ const NewQuoteStyle = styled.div`
       transform: translateX(0);
       transition-delay: 0ms;
     `};
+
+  @media (max-width: 500px) {
+    padding: 45px 0 15px;
+  }
 `;
 
 const Input = styled.input`
@@ -120,6 +124,11 @@ const Input = styled.input`
   font-size: 1.6rem;
   width: 100%;
   max-width: 300px;
+
+  @media(max-width: 500px) {
+    font-size: 1.6rem;
+    padding: 15px;
+  }
 `;
 
 const Error = styled.div`
@@ -142,6 +151,11 @@ const TextArea = styled.textarea`
   width: 100%;
   font-size: 6rem;
   outline: none;
+
+  @media (max-width: 500px) {
+    font-size: 2.1rem;
+    padding: 15px;
+  }
 `;
 
 const Submit = styled.button`

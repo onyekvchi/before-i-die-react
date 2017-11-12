@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import Container from "./Container";
 import Quote, { QuoteStyle } from "./Quote";
-import { ToggleLeft, ToggleRight } from "./Toggle";
+import { ToggleRight } from "./Toggle";
 import { getQuotes } from "./../utils";
 import About from "./About";
 import { HeroStyle, Title, Author, Overlay } from "./Hero.style";
