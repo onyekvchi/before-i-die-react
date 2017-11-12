@@ -21,7 +21,7 @@ class About extends Component {
 
   render() {
     return (
-      <AboutStyle visible={this.props.visible}>
+      <AboutStyle visible={this.props.visible} id="about">
         <Container>
           <Description>
             <p>
@@ -82,6 +82,7 @@ const AboutStyle = styled.div`
   background: #f7f7f7;
   padding: 60px 0 150px;
   color: black;
+  position: relative;
 `;
 
 const Description = styled.div`

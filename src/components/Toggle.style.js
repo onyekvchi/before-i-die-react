@@ -14,7 +14,7 @@ export const Toggle = styled.button`
   border: none;
   transition: transform 0.9s cubic-bezier(0.4, 0, 0, 1),
     -webkit-transform 0.9s cubic-bezier(0.4, 0, 0, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 
   @media screen and (max-width: 500px) {
     right: 15px;

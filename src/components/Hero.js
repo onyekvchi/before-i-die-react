@@ -3,10 +3,16 @@ import { Link, withRouter } from "react-router-dom";
 import Container from "./Container";
 import Quote, { QuoteStyle } from "./Quote";
 import { ToggleRight } from "./Toggle";
-import { getQuotes } from "./../utils";
+import { getQuotes, shuffle } from "./../utils";
 import About from "./About";
-import { HeroStyle, Title, Author, Overlay } from "./Hero.style";
 import LoadingQuote from "./LoadingQuote";
+import {
+  HeroStyle,
+  Title,
+  Author,
+  Overlay,
+  ScrollDownIndicator
+} from "./Hero.style";
 
 const AppStyle = {
   height: "100%",
@@ -15,31 +21,32 @@ const AppStyle = {
   overflowY: "scroll"
 };
 
+const backgrounds = [
+  "#FDA67E",
+  "#FD907E",
+  "#E19E53",
+  "#F9DA85",
+  "#FBEFA4",
+  "#FFF2DD",
+  "#FAF9F1",
+  "#E9FBFF",
+  "#D4F7ED",
+  "#D5EBED",
+  "#85D6D1"
+];
+
 class Hero extends Component {
   state = {
     position: 0,
     quotes: [],
-    meta: {},
     bgPosition: 0,
-    bg: [
-      "#FDA67E",
-      "#FD907E",
-      "#E19E53",
-      "#F9DA85",
-      "#FBEFA4",
-      "#FFF2DD",
-      "#FAF9F1",
-      "#E9FBFF",
-      "#D4F7ED",
-      "#D5EBED",
-      "#85D6D1"
-    ]
+    bg: shuffle(backgrounds)
   };
 
   componentDidMount = () => {
     getQuotes().then(response => {
       this.setState({
-        quotes: response
+        quotes: shuffle(response)
       });
     });
 
@@ -55,7 +62,7 @@ class Hero extends Component {
     this.setState(prevState => ({ bgPosition: prevState.bgPosition + 1 }));
   };
 
-  doneTyping = () => {
+  goToNextQuote = () => {
     this.setState((prevState, props) => ({
       position:
         prevState.position < prevState.quotes.length - 1
@@ -73,8 +80,10 @@ class Hero extends Component {
     }
   };
 
-  overlayClicked = () => {
-    this.props.history.push("/");
+  scrollToAboutSection = () => {
+    document.getElementById("about").scrollIntoView({
+      behavior: "smooth"
+    });
   };
 
   render() {
@@ -89,7 +98,7 @@ class Hero extends Component {
                 <Title>Before I die,</Title>
                 <Quote
                   text={this.state.quotes[this.state.position].quote}
-                  onDone={this.doneTyping}
+                  onDone={this.goToNextQuote}
                 />
               </div>
             ) : (
@@ -101,6 +110,12 @@ class Hero extends Component {
             label="Submit"
             active={this.props.location.pathname === "/new"}
           />
+          <ScrollDownIndicator
+            hoverColor={bg[bgPosition]}
+            onClick={this.scrollToAboutSection}
+          >
+            ?
+          </ScrollDownIndicator>
           <Overlay active={inactive} />
         </HeroStyle>
         <About />
